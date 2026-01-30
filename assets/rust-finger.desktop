@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Finger Monitor
+Comment=Keyboard and mouse activity monitor with statistics
+Exec=rust-finger
+Icon=rust-finger
+Terminal=false
+Type=Application
+Categories=Utility;System;Monitor;
+Keywords=keyboard;mouse;typing;statistics;monitor;
+StartupNotify=true

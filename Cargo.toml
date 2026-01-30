@@ -1,0 +1,65 @@
+[package]
+name = "rust-finger"
+version = "0.1.0"
+edition = "2021"
+description = "Keyboard and mouse activity monitor with statistics - GPU accelerated UI"
+authors = ["Developer"]
+license = "MIT"
+repository = "https://github.com/user/rust-finger"
+keywords = ["keyboard", "mouse", "monitor", "statistics", "gpui"]
+categories = ["gui", "development-tools"]
+
+[dependencies]
+# GPU-accelerated UI framework
+gpui = "0.2"
+
+# Global keyboard/mouse event listener
+rdev = "0.5"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime for background tasks
+tokio = { version = "1", features = ["sync", "rt-multi-thread"] }
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+# Exit handler
+ctrlc = "3.4"
+
+# Directory paths
+dirs = "5.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+
+# Debian package configuration
+[package.metadata.deb]
+maintainer = "Developer <developer@example.com>"
+copyright = "2026, Developer"
+license-file = ["LICENSE", "0"]
+extended-description = """
+Finger Monitor is a keyboard and mouse activity monitoring application 
+built with Rust and GPUI. It provides real-time statistics including:
+- Key press counts and keyboard heatmap
+- Mouse click tracking and movement distance
+- Typing speed (WPM) calculation
+- Hourly and daily activity charts
+"""
+depends = "$auto"
+section = "utils"
+priority = "optional"
+assets = [
+    ["target/release/rust-finger", "usr/bin/", "755"],
+    ["assets/rust-finger.desktop", "usr/share/applications/", "644"],
+    ["assets/rust-finger.png", "usr/share/icons/hicolor/256x256/apps/", "644"],
+    ["README.md", "usr/share/doc/rust-finger/README.md", "644"],
+]
